@@ -1,0 +1,424 @@
+/* =========================================================
+   Self Scheduling System - Base Styles
+   ========================================================= */
+
+:root {
+    --bg-color: #f4f6fb;
+    --surface-color: #ffffff;
+    --text-color: #1f2430;
+    --muted-text: #667085;
+    --accent-color: #4361ee;
+    --accent-color-hover: #3651c9;
+    --border-color: #e3e7ef;
+    --danger-color: #e5484d;
+    --success-color: #2e9e4f;
+    --card-radius: 14px;
+    --transition-speed: 0.35s;
+}
+
+/* Male theme: dark navy / black with blue-purple accent */
+body[data-theme="MALE"] {
+    --bg-color: #0f1224;
+    --surface-color: #1a1e37;
+    --text-color: #f2f3f9;
+    --muted-text: #b3b7d1;
+    --accent-color: #7c5cff;
+    --accent-color-hover: #6a4ae0;
+    --border-color: #2b3054;
+}
+
+/* Female theme: light pink with pink accent */
+body[data-theme="FEMALE"] {
+    --bg-color: #fff3f7;
+    --surface-color: #ffffff;
+    --text-color: #3a2231;
+    --muted-text: #8a5b70;
+    --accent-color: #ec4899;
+    --accent-color-hover: #d63c85;
+    --border-color: #ffd9e6;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    min-height: 100vh;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+/* ---------------- Navbar ---------------- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 32px;
+    background-color: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.navbar-brand {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar-links a {
+    color: var(--muted-text);
+    font-weight: 500;
+    padding: 6px 4px;
+    border-bottom: 2px solid transparent;
+}
+
+.navbar-links a.active,
+.navbar-links a:hover {
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+}
+
+/* ---------------- Layout ---------------- */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+}
+
+.footer {
+    text-align: center;
+    color: var(--muted-text);
+    padding: 24px;
+    font-size: 0.85rem;
+}
+
+/* ---------------- Welcome / Stats ---------------- */
+.welcome-card {
+    background-color: var(--surface-color);
+    border-radius: var(--card-radius);
+    padding: 28px;
+    margin-bottom: 24px;
+    border: 1px solid var(--border-color);
+    transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+
+.welcome-card h1 {
+    margin: 0 0 6px;
+}
+
+.welcome-card p {
+    margin: 0;
+    color: var(--muted-text);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.stat-card {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    padding: 20px;
+    text-align: center;
+    transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.stat-label {
+    color: var(--muted-text);
+    margin-top: 4px;
+}
+
+/* ---------------- Panels ---------------- */
+.panel {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    padding: 24px;
+    transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.panel-header h2 {
+    margin: 0;
+}
+
+/* ---------------- Cards ---------------- */
+.card-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+}
+
+.schedule-card {
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    padding: 16px;
+    background-color: var(--bg-color);
+    transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+
+.schedule-card-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--muted-text);
+    margin-bottom: 8px;
+}
+
+.schedule-card h3 {
+    margin: 0 0 4px;
+}
+
+.schedule-card p {
+    margin: 0;
+    color: var(--muted-text);
+}
+
+.badge {
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+}
+
+.empty-state {
+    color: var(--muted-text);
+    padding: 24px 0;
+    text-align: center;
+}
+
+/* ---------------- Buttons ---------------- */
+.btn {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-color-hover);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: #fff;
+}
+
+.btn-small {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+}
+
+/* ---------------- Filter form ---------------- */
+.filter-form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.filter-form input {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* ---------------- Table ---------------- */
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.schedule-table th,
+.schedule-table td {
+    text-align: left;
+    padding: 12px 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.schedule-table th {
+    color: var(--muted-text);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+}
+
+.actions form {
+    margin: 0;
+}
+
+.status-badge {
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.status-SCHEDULED {
+    background-color: rgba(67, 97, 238, 0.15);
+    color: var(--accent-color);
+}
+
+.status-CANCELLED {
+    background-color: rgba(229, 72, 77, 0.15);
+    color: var(--danger-color);
+}
+
+.status-COMPLETED {
+    background-color: rgba(46, 158, 79, 0.15);
+    color: var(--success-color);
+}
+
+/* ---------------- Forms ---------------- */
+.form-panel {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.schedule-form .form-group {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.schedule-form label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.schedule-form input,
+.schedule-form select,
+.schedule-form textarea {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.gender-toggle {
+    display: flex;
+    gap: 16px;
+}
+
+.gender-option {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500 !important;
+}
+
+.field-error {
+    color: var(--danger-color);
+    font-size: 0.8rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+/* ---------------- Alerts ---------------- */
+.alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+}
+
+.alert-success {
+    background-color: rgba(46, 158, 79, 0.15);
+    color: var(--success-color);
+}
+
+.alert-error {
+    background-color: rgba(229, 72, 77, 0.15);
+    color: var(--danger-color);
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 720px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .schedule-table {
+        display: block;
+        overflow-x: auto;
+    }
+}

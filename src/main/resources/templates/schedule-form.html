@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${formTitle} + ' | Self Scheduling System'">Schedule Form</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body id="formBody">
+
+<header class="navbar">
+    <div class="navbar-brand">📅 Self Scheduling System</div>
+    <nav class="navbar-links">
+        <a th:href="@{/}">Dashboard</a>
+        <a th:href="@{/schedules}">Schedules</a>
+        <a th:href="@{/schedules/new}" class="active">+ New Schedule</a>
+    </nav>
+</header>
+
+<main class="container">
+    <section class="panel form-panel">
+        <div class="panel-header">
+            <h2 th:text="${formTitle}">Create Schedule</h2>
+        </div>
+
+        <div th:if="${errorMessage}" class="alert alert-error" th:text="${errorMessage}"></div>
+
+        <form th:action="@{${formAction}}" th:object="${scheduleRequest}" method="post" class="schedule-form">
+
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" th:field="*{name}" placeholder="Your full name">
+                <span class="field-error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" th:field="*{email}" placeholder="you@example.com">
+                <span class="field-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="title">Schedule Title</label>
+                <input type="text" id="title" th:field="*{title}" placeholder="e.g. Team Discussion">
+                <span class="field-error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" th:field="*{description}" rows="3" placeholder="Optional details"></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="scheduleDate">Date</label>
+                    <input type="date" id="scheduleDate" th:field="*{scheduleDate}">
+                    <span class="field-error" th:if="${#fields.hasErrors('scheduleDate')}" th:errors="*{scheduleDate}"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="startTime">Start Time</label>
+                    <input type="time" id="startTime" th:field="*{startTime}">
+                    <span class="field-error" th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="endTime">End Time</label>
+                    <input type="time" id="endTime" th:field="*{endTime}">
+                    <span class="field-error" th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" th:field="*{category}">
+                    <option value="Academic">Academic</option>
+                    <option value="Work">Work</option>
+                    <option value="Study">Study</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Gender (changes the page theme only)</label>
+                <div class="gender-toggle">
+                    <label class="gender-option">
+                        <input type="radio" th:field="*{gender}" value="MALE" onchange="applyTheme('MALE')">
+                        <span>Male</span>
+                    </label>
+                    <label class="gender-option">
+                        <input type="radio" th:field="*{gender}" value="FEMALE" onchange="applyTheme('FEMALE')">
+                        <span>Female</span>
+                    </label>
+                </div>
+                <span class="field-error" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></span>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Save Schedule</button>
+                <a th:href="@{/schedules}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </section>
+</main>
+
+<footer class="footer">
+    <p>Self Scheduling System &mdash; College DevOps Project</p>
+</footer>
+
+<script th:src="@{/js/theme.js}"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var existingGender = /*[[${scheduleRequest.gender}]]*/ null;
+    /*]]>*/
+    if (existingGender) {
+        applyTheme(existingGender);
+    }
+</script>
+</body>
+</html>

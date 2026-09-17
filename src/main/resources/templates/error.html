@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error | Self Scheduling System</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="navbar-brand">📅 Self Scheduling System</div>
+    <nav class="navbar-links">
+        <a th:href="@{/}">Dashboard</a>
+        <a th:href="@{/schedules}">Schedules</a>
+        <a th:href="@{/schedules/new}">+ New Schedule</a>
+    </nav>
+</header>
+
+<main class="container">
+    <section class="panel">
+        <h2>Something went wrong</h2>
+        <p class="alert alert-error" th:text="${errorMessage} ?: 'An unexpected error occurred.'">Error message</p>
+        <a th:href="@{/}" class="btn btn-primary">Back to Dashboard</a>
+    </section>
+</main>
+
+</body>
+</html>

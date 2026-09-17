@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Self Scheduling System</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="navbar-brand">📅 Self Scheduling System</div>
+    <nav class="navbar-links">
+        <a th:href="@{/}" class="active">Dashboard</a>
+        <a th:href="@{/schedules}">Schedules</a>
+        <a th:href="@{/schedules/new}">+ New Schedule</a>
+    </nav>
+</header>
+
+<main class="container">
+    <section class="welcome-card">
+        <h1>Welcome 👋</h1>
+        <p>Manage your appointments and schedules in one simple place.</p>
+    </section>
+
+    <section class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number" th:text="${totalCount}">0</div>
+            <div class="stat-label">Total Schedules</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" th:text="${upcomingCount}">0</div>
+            <div class="stat-label">Upcoming Schedules</div>
+        </div>
+    </section>
+
+    <section class="panel">
+        <div class="panel-header">
+            <h2>Upcoming Schedules</h2>
+            <a th:href="@{/schedules}" class="btn btn-secondary">View All</a>
+        </div>
+
+        <div th:if="${#lists.isEmpty(upcomingSchedules)}" class="empty-state">
+            No upcoming schedules yet. <a th:href="@{/schedules/new}">Create one</a>.
+        </div>
+
+        <div class="card-list" th:unless="${#lists.isEmpty(upcomingSchedules)}">
+            <div class="schedule-card" th:each="schedule : ${upcomingSchedules}">
+                <div class="schedule-card-header">
+                    <span class="badge" th:text="${schedule.category}">Category</span>
+                    <span th:text="${schedule.scheduleDate} + ' • ' + ${schedule.startTime} + ' - ' + ${schedule.endTime}">Date & Time</span>
+                </div>
+                <h3 th:text="${schedule.title}">Title</h3>
+                <p th:text="'By ' + ${schedule.name}">By Name</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <p>Self Scheduling System &mdash; College DevOps Project</p>
+</footer>
+
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>
