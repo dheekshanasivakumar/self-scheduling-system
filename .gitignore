@@ -4,3 +4,6 @@ target/
 
 .DS_Store
 Thumbs.db
+
+.env
+application-local.properties
